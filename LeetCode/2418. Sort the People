@@ -1,0 +1,13 @@
+vector<string> sortPeople(vector<string>& names, vector<int>& heights) {
+        int n = heights.size();
+        for(int i = 0; i < n - 1; i++) {
+            int maxindex = i;
+            for(int j = i + 1; j < n; j++) {
+                if(heights[j] > heights[maxindex])
+                    maxindex = j;
+            }
+            swap(heights[maxindex], heights[i]);
+            swap(names[maxindex], names[i]);
+        }
+        return names; // Return the sorted names
+    }
