@@ -1,0 +1,16 @@
+vector<int> findDuplicates(vector<int>& nums) {
+      vector<int> duplicates;
+
+        for (int i = 0; i < nums.size(); ++i) {
+            int index = abs(nums[i]) - 1; // Convert value to index (zero-based)
+
+            // If nums[index] is positive, make it negative
+            if (nums[index] > 0) {
+                nums[index] = -nums[index];
+            } else { // If nums[index] is already negative, it means this is a duplicate
+                duplicates.push_back(index + 1); // Convert index back to value (one-based)
+            }
+        }
+
+        return duplicates;
+    }
