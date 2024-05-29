@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int numberOfSteps(int num) {
+        int steps = 0;
+    while (num > 0) {
+        if (num % 2 == 0) {
+            num /= 2;
+        } else {
+            num -= 1;
+        }
+        steps++;
+    }
+    return steps;
+   }
+
+    int main() {
+    int num1 = 14;
+    int num2 = 8;
+    int num3 = 123;
+
+    std::cout << "Input: " << num1 << " Output: " << numberOfSteps(num1) << std::endl;
+    std::cout << "Input: " << num2 << " Output: " << numberOfSteps(num2) << std::endl;
+    std::cout << "Input: " << num3 << " Output: " << numberOfSteps(num3) << std::endl;
+    return 0;
+   }
+};
