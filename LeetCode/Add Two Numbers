@@ -1,0 +1,29 @@
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+         ListNode dummy; // Dummy node to simplify code
+        ListNode* current = &dummy; // Pointer to construct the new list
+        int carry = 0; // To handle carry between sums
+        
+        // Traverse both lists
+        while (l1 != nullptr || l2 != nullptr || carry != 0) {
+            int sum = carry; // Start with carry from the last operation
+            if (l1 != nullptr) {
+                sum += l1->val; // Add value from l1
+                l1 = l1->next; // Move to the next node in l1
+            }
+            if (l2 != nullptr) {
+                sum += l2->val; // Add value from l2
+                l2 = l2->next; // Move to the next node in l2
+            }
+            
+            carry = sum / 10; // Update carry for the next operation
+            sum = sum % 10; // Keep only the last digit
+            
+            current->next = new ListNode(sum); // Create new node with the sum
+            current = current->next; // Move to the next node
+        }
+        
+        return dummy.next; // Return the next node of dummy, which is the head of the result list
+    }
+};
