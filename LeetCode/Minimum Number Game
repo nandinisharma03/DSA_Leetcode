@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> numberGame(vector<int>& nums) {
+        std::vector<int> arr;
+        
+       
+        std::sort(nums.begin(), nums.end());
+        
+        while (!nums.empty()) {
+            
+            int alice_move = nums.front();
+            nums.erase(nums.begin());
+            
+            if (!nums.empty()) {
+                
+                int bob_move = nums.front();
+                nums.erase(nums.begin());
+                
+               
+                arr.push_back(bob_move);
+            }
+            
+           
+            arr.push_back(alice_move);
+        }
+        
+        return arr;
+    }
+};
