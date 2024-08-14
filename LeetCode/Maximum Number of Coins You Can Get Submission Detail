@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int maxCoins(vector<int>& piles) {
+        std::sort(piles.begin(),piles.end());
+        int n =piles.size() /3;
+        int maxcoins=0;
+        for(int i=piles.size()-2;i>=n;i-=2){
+            maxcoins+=piles[i];
+        }
+        return maxcoins;
+    }
+};
