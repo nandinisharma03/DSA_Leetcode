@@ -1,0 +1,55 @@
+class Solution {
+public:
+   #include <iostream>
+#include <vector>
+#include <unordered_set>
+
+std::vector<std::vector<int>> findDifference(std::vector<int>& nums1, std::vector<int>& nums2) {
+    // Create unordered sets to store distinct values of nums1 and nums2
+    std::unordered_set<int> set1(nums1.begin(), nums1.end());
+    std::unordered_set<int> set2(nums2.begin(), nums2.end());
+
+    // Vectors to store the answer
+    std::vector<int> distinctInNums1, distinctInNums2;
+
+    // Find elements in set1 that are not in set2
+    for (int num : set1) {
+        if (set2.find(num) == set2.end()) {
+            distinctInNums1.push_back(num);
+        }
+    }
+
+    // Find elements in set2 that are not in set1
+    for (int num : set2) {
+        if (set1.find(num) == set1.end()) {
+            distinctInNums2.push_back(num);
+        }
+    }
+
+    // Return the result as a vector of two vectors
+    return {distinctInNums1, distinctInNums2};
+}
+
+int main() {
+    // Define the nums1 and nums2 vectors
+    std::vector<int> nums1 = {1, 2, 3};
+    std::vector<int> nums2 = {2, 4, 6};
+
+    // Call the function
+    std::vector<std::vector<int>> result = findDifference(nums1, nums2);
+
+    // Print the result
+    std::cout << "Answer[0]: ";
+    for (int num : result[0]) {
+        std::cout << num << " ";
+    }
+    std::cout << "\nAnswer[1]: ";
+    for (int num : result[1]) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+
+};
