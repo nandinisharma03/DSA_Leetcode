@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool canArrange(vector<int>& arr, int k) {
+        unordered_map<int,int>remcount;
+    for(int num:arr){
+        int rem=((num%k)+k)%k;
+        remcount[rem]++;
+    }
+    for(int num:arr){
+        int rem=((num%k)+k)%k;
+        if(rem==0){
+            if(remcount[rem]%2!=0) return false;
+        }else{
+            if(remcount[rem]!=remcount[k-rem])return false;
+        }
+    }
+    return true;
+    }
+};
