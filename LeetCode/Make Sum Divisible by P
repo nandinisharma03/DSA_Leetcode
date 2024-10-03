@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int minSubarray(vector<int>& nums, int p) {
+         long long totalSum = accumulate(nums.begin(), nums.end(), 0LL) % p;
+        
+        
+        if (totalSum == 0) return 0;
+
+        
+        unordered_map<int, int> modMap;
+        modMap[0] = -1; 
+
+        long long currSum = 0;
+        int minLen = nums.size();
+        
+        
+        for (int i = 0; i < nums.size(); ++i) {
+            
+            currSum = (currSum + nums[i]) % p;
+            if (currSum < 0) currSum += p; 
+
+            
+            long long modToFind = (currSum - totalSum + p) % p;
+
+    
+            if (modMap.find(modToFind) != modMap.end()) {
+                int len = i - modMap[modToFind];
+                minLen = min(minLen, len);
+            }
+
+        
+            modMap[currSum] = i;
+        }
+
+        
+        return minLen == nums.size() ? -1 : minLen;
+    }
+};
