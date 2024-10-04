@@ -1,0 +1,20 @@
+class Solution {
+public:
+    long long dividePlayers(vector<int>& skill) {
+        long long result=0;
+        sort(skill.begin(),skill.end());
+        int n=skill.size();
+        int i=0;
+        int j=n-1;
+
+        long long noway=skill[0]+skill[n-1];
+
+        while(i<j){
+            if(skill[i]+skill[j]!=noway)return-1;
+            result+=skill[i]*skill[j];
+            i++;
+            j--;
+        }
+        return result;
+    }
+};
