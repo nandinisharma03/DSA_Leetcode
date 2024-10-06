@@ -1,0 +1,44 @@
+class Solution {
+public:
+  vector<string> split(const string& sentence){
+    vector<string> words;
+    string word;
+    for(char ch: sentence){
+        if(ch==' '){
+            if(!word.empty()){
+                words.push_back(word);
+                word.clear();
+
+            }
+        } else{
+            word+=ch;
+        }
+    }
+    if(!word.empty()){
+        words.push_back(word);
+    }
+    return words;
+  }
+bool areSentencesSimilar(string sentence1, string sentence2) {
+        vector<string> s1 =split(sentence1);
+        vector<string> s2 =split(sentence2);
+
+        if(s1.size()<s2.size()){
+         swap(s1,s2);
+        }
+
+        int start=0,end=0;
+        int s2size = s2.size();
+        int s1size = s1.size();
+
+        while(start<s2size && s1[start]==s2[start]){
+            start++;
+        }
+
+        while(end<s2size&&s1[s1size-1-end]==s2[s2size-1-end]){
+            end++;
+        }
+
+        return start+end >=s2size;
+    }
+};
