@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int minLength(string s) {
+       bool changed = true;
+
+        while (changed) {
+            changed = false;  
+            int n = s.length();
+            
+            
+            string new_s = "";
+            
+            for (int i = 0; i < n; i++) {
+               
+                if (i < n - 1 && ((s[i] == 'A' && s[i + 1] == 'B') || (s[i] == 'C' && s[i + 1] == 'D'))) {
+                    
+                    i++;  
+                    changed = true;  
+                } else {
+                    
+                    new_s += s[i];
+                }
+            }
+            
+            
+            s = new_s;
+        }
+
+        
+        return s.length();
+    }
+};
