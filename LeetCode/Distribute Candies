@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int distributeCandies(vector<int>& candyType) {
+        unordered_map<int,int>map;
+      for(auto x:candyType){
+        map[x]++;
+      }
+      int uniquecandy=map.size();
+      int maxcandy=candyType.size()/2;
+      return min(uniquecandy,maxcandy);
+      
+      
+    }
+};
