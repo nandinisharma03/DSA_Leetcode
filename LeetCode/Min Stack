@@ -1,0 +1,43 @@
+class MinStack {
+public:
+    stack<long long> st; // Use long long for safe calculations
+    long long mini;
+
+    MinStack() {
+        mini = 0;
+    }
+    
+    void push(int val) {
+        if (st.empty()) {
+            mini = val;
+            st.push(val);
+        } else if (val > mini) {
+            st.push(val);
+        } else {
+            // Push modified value to encode the new minimum
+            st.push(2LL * val - mini);
+            mini = val; // Update the minimum
+        }
+    }
+    
+    void pop() {
+        if (st.empty()) return;
+        long long n = st.top();
+        st.pop();
+        if (n < mini) {
+            // Decode the previous minimum
+            mini = 2LL * mini - n;
+        }
+    }
+    
+    int top() {
+        if (st.empty()) return -1; // Handle empty stack case if necessary
+        long long x = st.top();
+        if (x < mini) return (int)mini; // If encoded, return the minimum
+        return (int)x; // Otherwise, return the top value
+    }
+    
+    int getMin() {
+        return (int)mini;
+    }
+};
