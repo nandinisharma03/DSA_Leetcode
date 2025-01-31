@@ -1,0 +1,28 @@
+class Solution {
+    const int MOD = 1e9 + 7;
+    
+    private:
+    
+    long long power_mod(long long base, long long expo, long long mod) {
+        long long result = 1;
+        while (expo > 0) {
+            if (expo % 2 == 1) {  
+                result = (result * base) % mod;
+            }
+            base = (base * base) % mod;  
+            expo /= 2; 
+        }
+        return result;
+    }
+
+public:
+    long long countGoodNumbers(long long n) {
+        long long even_count = (n + 1) / 2;  
+        long long odd_count = n / 2;        
+
+        long long even_ways = power_mod(5, even_count, MOD); 
+        long long odd_ways = power_mod(4, odd_count, MOD);    
+
+        return (even_ways * odd_ways) % MOD;  
+    }
+};
