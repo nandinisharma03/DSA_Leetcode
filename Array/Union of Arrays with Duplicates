@@ -1,0 +1,15 @@
+class Solution {
+  public:
+    vector<int> findUnion(vector<int>& a, vector<int>& b) {
+        // code here
+        unordered_set<int>st;
+        for(auto x:a){
+            st.insert(x);
+        }
+        for(auto y:b){
+            st.insert(y);
+        }
+        
+        return vector<int>(st.begin(), st.end());
+    }
+};
